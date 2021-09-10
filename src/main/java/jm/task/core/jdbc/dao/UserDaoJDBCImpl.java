@@ -5,17 +5,16 @@ import jm.task.core.jdbc.model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 import jm.task.core.jdbc.util.Util;
 
 public class UserDaoJDBCImpl implements UserDao {
     public UserDaoJDBCImpl() {
-
     }
 
     public void createUsersTable() {
-
         try (Statement statement = Util.getConnectionMySQL().createStatement()) {
-            statement.execute("CREATE TABLE `mydbusers`.`users` (\n" +
+            statement.execute("CREATE TABLE IF NOT EXISTS `mydbusers`.`users` (\n" +
                     "  `id` BIGINT NOT NULL AUTO_INCREMENT,\n" +
                     "  `name` VARCHAR(45) NOT NULL,\n" +
                     "  `lastName` VARCHAR(45) NULL,\n" +
@@ -28,14 +27,11 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
         }
 
-
     }
 
     public void dropUsersTable() {
         try (Statement statement = Util.getConnectionMySQL().createStatement()) {
-            statement.execute("DROP TABLE users");
-        }  catch (SQLSyntaxErrorException e) {
-            System.out.println("Таблицы users не существует");
+            statement.execute("DROP TABLE IF EXISTS users");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +64,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement statement = Util.getConnectionMySQL().createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
             List<User> userList = new ArrayList<>();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 User user = new User();
                 user.setId(resultSet.getLong("id"));
                 user.setName(resultSet.getString("name"));
@@ -77,9 +73,9 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
             return userList;
-            } catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            }
+        }
         return null;
     }
 

@@ -11,12 +11,24 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost/mydbusers";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "admin";
-
+    private static Connection connection;
 
     public static Connection getConnectionMySQL() throws SQLException {
-        Driver driver = new FabricMySQLDriver();
-        DriverManager.registerDriver(driver);
-        Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        return connection;
+        if (connection == null) {
+            Driver driver = new FabricMySQLDriver();
+            DriverManager.registerDriver(driver);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            return connection;
+        } else {
+            return connection;
+        }
     }
+
+    public static void closeConnectionMySQL() throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+    }
+
+
 }
