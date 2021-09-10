@@ -13,6 +13,9 @@ public class Util {
     private static final String PASSWORD = "admin";
     private static Connection connection;
 
+    private Util (){
+    }
+
     public static Connection getConnectionMySQL() throws SQLException {
         if (connection == null) {
             Driver driver = new FabricMySQLDriver();
