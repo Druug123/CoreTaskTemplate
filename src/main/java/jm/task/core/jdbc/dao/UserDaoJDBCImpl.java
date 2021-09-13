@@ -21,8 +21,6 @@ public class UserDaoJDBCImpl implements UserDao {
                     "  `age` TINYINT NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);");
-        } catch (SQLSyntaxErrorException e) {
-            System.out.println("Таблица users уже была создана");
         } catch (SQLException e) {
             e.printStackTrace();
         }
