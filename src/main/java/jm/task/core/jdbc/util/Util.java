@@ -12,6 +12,7 @@ public class Util {
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "admin";
     private static Connection connection;
+    //private static Session session;
 
     private Util (){
     }
@@ -32,6 +33,24 @@ public class Util {
             connection.close();
         }
     }
+
+    /*public static Session getSessionMySQL() {
+        if (session == null) {
+            Properties prop = new Properties();
+            prop.setProperty("hibernate.connection.url", URL);
+            prop.setProperty("dialect", "org.hibernate.dialect.MySQL");
+            prop.setProperty("hibernate.connection.username", USERNAME);
+            prop.setProperty("hibernate.connection.password", PASSWORD);
+            prop.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+            prop.setProperty("show_sql", "true");
+            prop.setProperty("CURRENT_SESSION_CONTEXT_CLASS", "thread");
+            SessionFactory sessionFactory = new Configuration().addProperties(prop).buildSessionFactory();
+            session = sessionFactory.openSession();
+            return session;
+        }
+        return session;
+    }*/
+
 
 
 }
