@@ -1,28 +1,27 @@
 package jm.task.core.jdbc.util;
 
-import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+import org.hibernate.*;
+import org.hibernate.cfg.Configuration;
+
+import java.sql.*;
+import java.util.Properties;
 
 public class Util {
     private static final String URL = "jdbc:mysql://localhost/mydbusers";
     private static final String USERNAME = "admin";
     private static final String PASSWORD = "admin";
     private static Connection connection;
-    //private static Session session;
+    private static Session session;
 
     private Util (){
     }
 
     public static Connection getConnectionMySQL() throws SQLException {
         if (connection == null) {
-            Driver driver = new FabricMySQLDriver();
-            DriverManager.registerDriver(driver);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            return connection;
+        connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        return connection;
         }
         return connection;
 
@@ -34,7 +33,7 @@ public class Util {
         }
     }
 
-    /*public static Session getSessionMySQL() {
+    public static Session getSessionMySQL() {
         if (session == null) {
             Properties prop = new Properties();
             prop.setProperty("hibernate.connection.url", URL);
@@ -49,7 +48,7 @@ public class Util {
             return session;
         }
         return session;
-    }*/
+    }
 
 
 
