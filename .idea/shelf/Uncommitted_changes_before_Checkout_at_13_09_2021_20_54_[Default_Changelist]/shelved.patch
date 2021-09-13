@@ -1,0 +1,19 @@
+Index: .idea/libraries/Maven__junit_junit_4_12.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><component name=\"libraryTable\">\r\n  <library name=\"Maven: junit:junit:4.12\">\r\n    <CLASSES>\r\n      <root url=\"jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/\" />\r\n    </CLASSES>\r\n    <JAVADOC>\r\n      <root url=\"jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-javadoc.jar!/\" />\r\n    </JAVADOC>\r\n    <SOURCES>\r\n      <root url=\"jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/\" />\r\n    </SOURCES>\r\n  </library>\r\n</component>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__junit_junit_4_12.xml b/.idea/libraries/Maven__junit_junit_4_12.xml
+--- a/.idea/libraries/Maven__junit_junit_4_12.xml	(revision 8db8dafccb5014d3d7bd4ba6a4e39af36f77408f)
++++ b/.idea/libraries/Maven__junit_junit_4_12.xml	(date 1631555629328)
+@@ -1,5 +1,8 @@
+ <component name="libraryTable">
+   <library name="Maven: junit:junit:4.12">
++    <ANNOTATIONS>
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/externalAnnotations/junit/junit/4.12-an1/junit-4.12-an1-annotations.zip!/" />
++    </ANNOTATIONS>
+     <CLASSES>
+       <root url="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/" />
+     </CLASSES>
