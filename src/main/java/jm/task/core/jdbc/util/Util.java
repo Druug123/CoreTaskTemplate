@@ -22,9 +22,9 @@ public class Util {
             DriverManager.registerDriver(driver);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             return connection;
-        } else {
-            return connection;
         }
+        return connection;
+
     }
 
     public static void closeConnectionMySQL() throws SQLException {
