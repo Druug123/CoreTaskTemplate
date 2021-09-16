@@ -21,7 +21,7 @@ public class Main {
         userService.dropUsersTable();
 
         try {
-        Util.closeSessionFactory();;
+        Util.closeSessionFactory();
         } catch (Exception e) {
             e.printStackTrace();
         }

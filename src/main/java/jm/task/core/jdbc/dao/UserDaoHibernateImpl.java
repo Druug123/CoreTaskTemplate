@@ -2,9 +2,11 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
@@ -58,9 +60,8 @@ public class UserDaoHibernateImpl implements UserDao {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            User user = new User();
-            user.setId(id);
-            session.delete(user);
+            session.createQuery("DELETE FROM users WHERE id = :id")
+                    .setParameter("id", id);
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,10 +76,18 @@ public class UserDaoHibernateImpl implements UserDao {
     public List<User> getAllUsers() {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        List<User> userList = session.createCriteria(User.class).list();
-        transaction.commit();
-        session.flush();
-        session.close();
+        List<User> userList = new ArrayList<>();
+        try {
+            userList = session.createQuery("FROM User").list();
+            transaction.commit();
+            return userList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            session.flush();
+            session.close();
+        }
         return userList;
     }
 
@@ -87,8 +96,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Session session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            List<User> userList = session.createCriteria(User.class).list();
-            userList.forEach(session::delete);
+            session.createSQLQuery("TRUNCATE TABLE users").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
